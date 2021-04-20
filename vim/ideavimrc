@@ -1,0 +1,94 @@
+source $VIMRUNTIME/defaults.vim
+
+set nocompatible
+set modelines=1
+filetype off
+set encoding=utf-8
+set scrolloff=3
+set autoindent
+set showmode
+set showcmd
+set hidden
+set cursorline
+set ttyfast
+set ruler
+set laststatus=2
+set ttimeoutlen=10
+set clipboard+=unnamed
+
+"Show invisible characters
+set list
+set listchars=tab:▸\ ,
+
+"Searching/moving settings
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<cr>
+nnoremap <tab> %
+vnoremap <tab> %
+
+"Set directory for backup and undo files
+set backupdir=~/.vim/tmp,.
+set directory=~/.vim/tmp,.
+set undodir=~/.vim/tmp,.
+set undofile
+set backup
+
+" Surround plugin
+set surround
+
+"Extended '%' command
+if has('syntax') && has('eval')
+  packadd matchit
+endif
+
+"Key mappings
+nnoremap j gj
+nnoremap k gk
+"
+inoremap jj <ESC>
+
+" Custom commands
+let mapleader=' '
+" Select pasted text
+nnoremap <leader>v V`]
+nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>a :Ack! 
+nnoremap <leader>j <ESC>:%!python -mjson.tool<CR>
+
+nnoremap <Leader>cd :action GotoDeclaration<CR>
+nnoremap <Leader>gt :action GotoTest<CR>
+
+nnoremap <Leader>h :action Back<CR>
+nnoremap <Leader>l :action Forward<CR>
+nnoremap <Leader>th :action PreviousTab<CR>
+nnoremap <Leader>tl :action NextTab<CR>
+
+nnoremap <Leader>fp :action ShowFilePath<CR>
+nnoremap <Leader>fu :action FindUsages<CR>
+
+nnoremap <Leader>se :action SearchEverywhere<CR>
+nnoremap <Leader>su :action ShowUsages<CR>
+
+nnoremap <Leader>ic :action InspectCode<CR>
+nnoremap <Leader>p :action ParameterInfo<CR>
+
+nnoremap <Leader>fc :action ReformatCode<CR>
+nnoremap <Leader>tt :action ActivateTerminalToolWindow<CR>
+nnoremap <Leader>si :action SelectIn<CR>
+nnoremap <Leader>run :action ChooseRunConfiguration<CR>
+nnoremap <Leader>rename :action RenameElement<CR>
+
+nnoremap zO zR<CR>
+nnoremap zC zM<CR>
+
+unmap <C-p>
+
+" Reload .ideavimrc
+nnoremap <Leader>rc :source ~/.ideavimrc<CR>
+
+vmap <Leader>fR c<C-O>:set ri<CR><C-R>"<Esc>:set nori<CR>
